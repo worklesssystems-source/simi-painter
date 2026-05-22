@@ -23,18 +23,47 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 <script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Denisa Simionov",
-  "alternateName": "SIMI",
-  "jobTitle": "Artist Pictor",
-  "description": "Pictoriță specializată în ulei, acuarelă și tehnici mixte. Comenzi personalizate. Livrare în România.",
-  "sameAs": [
-    "https://www.instagram.com/denisa_simionov",
-    "https://www.facebook.com/denisa.simionov.56"
-  ]
-}
+[
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://denisasimionov.ro/#artist",
+    "name": "Denisa Simionov",
+    "alternateName": "SIMI",
+    "jobTitle": "Artist Pictor",
+    "description": "Pictoriță specializată în ulei, acuarelă și tehnici mixte. Comenzi personalizate. Livrare în România.",
+    "url": "https://denisasimionov.ro",
+    "image": "https://denisasimionov.ro/imagini/denisa-aer-liber.jpeg",
+    "sameAs": [
+      "https://www.instagram.com/denisa_simionov",
+      "https://www.facebook.com/denisa.simionov.56"
+    ],
+    "hasCredential": {
+      "@type": "EducationalOccupationalCredential",
+      "name": "Certificat de Calificare Nivel 4 — Arte Vizuale",
+      "credentialCategory": "certificate",
+      "recognizedBy": { "@type": "Organization", "name": "Liceul de Arte George Georgescu Tulcea" },
+      "dateCreated": "2025"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "SIMI — Pictură Originală",
+    "description": "Tablouri originale în ulei, acuarelă și tehnici mixte. Comenzi personalizate cu livrare în România.",
+    "url": "https://denisasimionov.ro",
+    "image": "https://denisasimionov.ro/imagini/logo.jpeg",
+    "priceRange": "800 RON+",
+    "areaServed": "România",
+    "founder": { "@id": "https://denisasimionov.ro/#artist" },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+40771567476",
+      "contactType": "customer service",
+      "availableLanguage": "Romanian"
+    }
+  }
+]
 </script>
 <style>
 :root {
@@ -422,8 +451,7 @@ button { border: none; background: none; font-family: inherit; cursor: none; }
 }
 .about-photo {
   position: relative; z-index:1;
-  width:100%; aspect-ratio:3/4;
-  object-fit:cover; object-position:center top;
+  width:100%; height:auto;
   display:block;
 }
 .about-glow {
@@ -453,26 +481,60 @@ button { border: none; background: none; font-family: inherit; cursor: none; }
 .about-body strong { color:var(--white); font-weight:400; }
 
 .stats {
-  display: grid; grid-template-columns:1fr 1fr;
-  gap: 16px; margin-top:40px;
+  display: grid; grid-template-columns: repeat(4,1fr);
+  margin-top: 40px;
+  border-top: 1px solid rgba(201,168,76,.2);
+  border-bottom: 1px solid rgba(201,168,76,.2);
 }
 .stat {
-  padding: 18px 16px; text-align:center;
-  border: 1px solid rgba(201,168,76,.15);
-  background: rgba(201,168,76,.03);
+  padding: 28px 20px; text-align:center;
+  position: relative;
+}
+.stat + .stat::before {
+  content:''; position:absolute; left:0; top:20%; bottom:20%;
+  width:1px; background: rgba(201,168,76,.2);
 }
 .stat-n {
   font-family: var(--ff-title);
-  font-size: 2.6rem; font-weight:300;
-  line-height:1; margin-bottom:5px;
+  font-size: 3rem; font-weight:300;
+  line-height:1; margin-bottom:8px;
   background: var(--gold-grad);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
 }
 .stat-l {
-  font-size:.68rem; letter-spacing:.1em;
+  font-size:.65rem; letter-spacing:.14em;
   text-transform:uppercase; color:var(--white-dim);
+}
+.about-bottom {
+  max-width: 1220px; margin: 48px auto 0;
+  padding: 0 52px;
+}
+.about-bottom .stats {
+  grid-template-columns: repeat(4,1fr);
+  margin-top: 0;
+}
+.diploma-wrap {
+  border: 1px solid rgba(201,168,76,.2);
+  padding: 12px;
+  background: rgba(201,168,76,.03);
+}
+.diploma-img {
+  width: 100%; display: block;
+  filter: sepia(10%) brightness(0.95);
+  transition: filter .3s;
+}
+.diploma-wrap:hover .diploma-img { filter: sepia(0%) brightness(1); }
+.diploma-label {
+  font-size: .68rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--gold);
+  text-align: center; margin-top: 10px;
+}
+@media(max-width:820px) {
+  .about-bottom { padding: 0 24px; }
+  .about-bottom .stats { grid-template-columns: repeat(2,1fr); }
+  .about-photo { aspect-ratio: auto; }
 }
 
 @media(max-width:820px) {
@@ -760,6 +822,30 @@ textarea { resize:vertical; min-height:110px; }
 }
 .wa-float:hover { transform:scale(1.1) translateY(-2px); box-shadow:0 8px 28px rgba(201,168,76,.6); }
 .wa-float svg { width:26px; height:26px; fill:var(--black); }
+
+/* ── WA PULSE ── */
+.wa-float::before {
+  content:''; position:absolute; inset:0;
+  border-radius:50%;
+  background: var(--gold-grad);
+  animation: waPulse 2.4s ease-out infinite;
+  z-index:-1;
+}
+@keyframes waPulse {
+  0%   { transform:scale(1);   opacity:.55; }
+  70%  { transform:scale(1.55); opacity:0; }
+  100% { transform:scale(1.55); opacity:0; }
+}
+
+/* ── LIGHTBOX ZOOM ── */
+#lb-img {
+  max-width:100%; max-height:78vh;
+  object-fit:contain;
+  cursor: zoom-in;
+  transition: transform .3s var(--ease);
+  transform-origin: center center;
+}
+#lb-img.zoomed { transform: scale(2); cursor: zoom-out; }
 </style>
 </head>
 <body>
@@ -776,7 +862,7 @@ textarea { resize:vertical; min-height:110px; }
 
 <!-- NAVBAR -->
 <nav id="nav">
-  <a href="#" class="nav-logo"><img src="logo.jpeg" alt="SIMI — Denisa Simionov"></a>
+  <a href="#" class="nav-logo"><img src="imagini/logo.jpeg" alt="SIMI — Denisa Simionov"></a>
   <ul class="nav-links">
     <li><a href="#galerie">Galerie</a></li>
     <li><a href="#despre">Despre</a></li>
@@ -795,7 +881,7 @@ textarea { resize:vertical; min-height:110px; }
     <div class="hero-inner">
       <p class="hero-eyebrow">Pictură originală &middot; România</p>
       <h1 class="hero-title" style="font-size:clamp(2.2rem,3.8vw,4rem);line-height:1.1;">Fiecare tablou spune<br><em>ce cuvintele nu pot.</em></h1>
-      <p class="hero-sub">Pictură originală realizată cu perfecționism obsesiv — pentru spații care merită mai mult decât obișnuitul.</p>
+      <p class="hero-sub">Tablouri care opresc oamenii în loc când intră în cameră — pictate cu mâna, unice, irepetabile.</p>
       <div class="hero-ctas">
         <a href="#galerie" class="btn-gold">Descoperă lucrările</a>
         <a href="https://wa.me/40771567476" class="btn-ghost" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
@@ -804,7 +890,7 @@ textarea { resize:vertical; min-height:110px; }
     </div>
     <div class="hero-photo-wrap">
       <img class="hero-photo"
-        src="WhatsApp Image 2026-05-20 at 18.45.53.jpeg"
+        src="imagini/denisa-simionov-atelier.jpeg"
         alt="Denisa Simionov — SIMI, pictoriță">
       <div class="hero-photo-glow"></div>
     </div>
@@ -818,11 +904,11 @@ textarea { resize:vertical; min-height:110px; }
     <h2 class="sec-title rv d1">Lucrări</h2>
     <div class="divider rv d2"></div>
     <div class="filters rv d3">
-      <button class="f-btn on" data-f="toate">Toate</button>
-      <button class="f-btn" data-f="ulei">Ulei</button>
+      <button class="f-btn on" data-f="peisaje">Peisaje</button>
       <button class="f-btn" data-f="flori">Flori</button>
-      <button class="f-btn" data-f="peisaje">Peisaje</button>
+      <button class="f-btn" data-f="ulei">Ulei</button>
       <button class="f-btn" data-f="figurativ">Figurativ</button>
+      <button class="f-btn" data-f="cuea">Denisa</button>
     </div>
   </div>
   <div class="gallery-grid" id="gg"></div>
@@ -833,8 +919,9 @@ textarea { resize:vertical; min-height:110px; }
   <div class="about-grid">
     <div class="about-photo-wrap rv">
       <img class="about-photo" loading="lazy"
-        src="WhatsApp Image 2026-05-20 at 18.4.jpeg"
-        alt="Denisa Simionov — SIMI, pictoriță">
+        src="imagini/diploma1.jpeg"
+        alt="Certificat de Calificare Nivel 4 — Arte Vizuale, Denisa Simionov"
+        style="object-fit:contain; background:#f5f0e8;">
       <div class="about-glow"></div>
     </div>
     <div class="about-text">
@@ -846,12 +933,14 @@ textarea { resize:vertical; min-height:110px; }
         <strong>12 ani de pictură.</strong> Fiecare lucrare e rezultatul unui proces lent, deliberat, aproape obsesiv — unde nimic nu e lăsat la întâmplare până când totul e exact cum trebuie să fie.<br><br>
         Nu pictez în serie. Lucrez în ulei, acuarelă și tehnici mixte, pe pânze care au propria lor greutate și prezență. <strong>Fiecare tablou e original, unic, irepetabil.</strong> Nu există o a doua copie.
       </p>
-      <div class="stats rv d4">
-        <div class="stat"><div class="stat-n" data-to="12" data-sfx="">0</div><div class="stat-l">Ani de pictură</div></div>
-        <div class="stat"><div class="stat-n" data-to="100" data-sfx="%">0</div><div class="stat-l">Lucrări originale</div></div>
-        <div class="stat"><div class="stat-n" data-to="100" data-sfx="+">0</div><div class="stat-l">Tablouri create</div></div>
-        <div class="stat"><div class="stat-n" data-to="24" data-sfx="h">0</div><div class="stat-l">Timp maxim răspuns</div></div>
-      </div>
+    </div>
+  </div>
+  <div class="about-bottom rv">
+    <div class="stats">
+      <div class="stat"><div class="stat-n" data-to="12" data-sfx="">0</div><div class="stat-l">Ani de pictură</div></div>
+      <div class="stat"><div class="stat-n" data-to="100" data-sfx="%">0</div><div class="stat-l">Lucrări originale</div></div>
+      <div class="stat"><div class="stat-n" data-to="100" data-sfx="+">0</div><div class="stat-l">Tablouri create</div></div>
+      <div class="stat"><div class="stat-n" data-to="24" data-sfx="h">0</div><div class="stat-l">Timp maxim răspuns</div></div>
     </div>
   </div>
 </section>
@@ -882,6 +971,42 @@ textarea { resize:vertical; min-height:110px; }
   </div>
 </section>
 
+<!-- TESTIMONIALS -->
+<section id="testimoniale">
+  <p class="eyebrow rv">Ce spun clienții</p>
+  <h2 class="sec-title rv d1">Povești adevărate</h2>
+  <div class="divider rv d2"></div>
+  <div class="testi-grid">
+    <article class="tcard has-img rv d1">
+      <img class="tcard-painting" src="imagini/tablou-client-peisaj.jpeg" alt="Tablou original — SIMI" loading="lazy">
+      <div class="tcard-body">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Sunt foarte frumoase și apreciate! Le-am avut expuse cu drag. Abia aștept să comand din nou."</p>
+        <p class="tcard-name">Client fidel</p>
+        <p class="tcard-city">Galați</p>
+      </div>
+    </article>
+    <article class="tcard has-img rv d2">
+      <img class="tcard-painting" src="imagini/calorifer-viu-tehnici-mixte.jpeg" alt="Calorifer Viu — SIMI" loading="lazy">
+      <div class="tcard-body">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Nu m-am așteptat să fiu atât de impresionat. Caloriferul a devenit piesa centrală a camerei — toată lumea îl remarcă. Ceva între artă și funcțional, perfect executat."</p>
+        <p class="tcard-name">Mihai și Ana T.</p>
+        <p class="tcard-city">Tulcea</p>
+      </div>
+    </article>
+    <article class="tcard has-img rv d3">
+      <img class="tcard-painting" src="imagini/malul-apei.jpeg" alt="Malul Apei — SIMI" loading="lazy">
+      <div class="tcard-body">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Tabloul a ajuns în living și a schimbat tot spațiul. Culori vii, textură reală — nu e un print, se simte. Cineva a pus suflet în fiecare centimetru."</p>
+        <p class="tcard-name">Cristian L.</p>
+        <p class="tcard-city">Galați</p>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- CUSTOM ORDER -->
 <section id="comanda">
   <div class="comanda-wrap">
@@ -892,7 +1017,6 @@ textarea { resize:vertical; min-height:110px; }
       <p class="comanda-desc rv d3">Îți creez o lucrare originală pornind de la viziunea ta — dimensiune, culori, subiect, emoție. Tu descrii, eu pictez.</p>
       <p class="comanda-price rv d4">Prețuri începând de la <strong>800 RON</strong></p>
     </div>
-    <!-- Connect to Formspree: replace action with https://formspree.io/f/YOUR_ID -->
     <form class="form-g rv" id="orderForm" novalidate>
       <div class="fg">
         <label for="fn">Nume</label>
@@ -903,55 +1027,15 @@ textarea { resize:vertical; min-height:110px; }
         <input type="tel" id="fp" name="phone" placeholder="+40 7XX XXX XXX" required>
       </div>
       <div class="fg full">
-        <label for="fs">Dimensiune dorită</label>
-        <select id="fs" name="size">
-          <option value="">Selectează dimensiunea</option>
-          <option value="mic">Mic — 20×30 cm</option>
-          <option value="mediu">Mediu — 40×60 cm</option>
-          <option value="mare">Mare — 60×90 cm</option>
-          <option value="xl">Extra mare — 80×120 cm+</option>
-          <option value="personalizat">Personalizat / Nu știu încă</option>
-        </select>
-      </div>
-      <div class="fg full">
-        <label for="fsubj">Ce vrei pictat</label>
-        <input type="text" id="fsubj" name="subject" placeholder="Peisaj, portret, flori, cadou pentru cineva..." required>
+        <label for="fsubj">Descrie pe scurt ce vrei pictat</label>
+        <input type="text" id="fsubj" name="subject" placeholder="Ex: peisaj cu mare, portret, flori pentru cadou..." required>
       </div>
       <div class="form-submit">
-        <button type="submit" class="btn-gold" id="submitBtn">Trimite cererea</button>
-        <p class="form-note">Restul detaliilor le stabilim pe WhatsApp în maxim 24h.</p>
+        <button type="submit" class="btn-gold" id="submitBtn">Vreau tabloul meu</button>
+        <p class="form-note">Odată vândut, nu poate fi recreat exact.</p>
+        <p class="form-note" style="margin-top:6px;">Restul detaliilor le stabilim pe WhatsApp în maxim 24h.</p>
       </div>
     </form>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section id="testimoniale">
-  <p class="eyebrow rv">Ce spun clienții</p>
-  <h2 class="sec-title rv d1">Povești adevărate</h2>
-  <div class="divider rv d2"></div>
-  <div class="testi-grid">
-    <article class="tcard has-img rv d1">
-      <img class="tcard-painting" src="WhatsApp Image 2026-05-22 at 17.31.35 (3).jpeg" alt="Tablou original — SIMI" loading="lazy">
-      <div class="tcard-body">
-        <div class="stars">★★★★★</div>
-        <p class="tcard-text">"Sunt foarte frumoase și apreciate! Le-am avut expuse cu drag. Abia aștept să comand din nou."</p>
-        <p class="tcard-name">Client fidel</p>
-        <p class="tcard-city">Galați</p>
-      </div>
-    </article>
-    <article class="tcard rv d2">
-      <div class="stars">★★★★★</div>
-      <p class="tcard-text">"Tabloul acum e centrul livingului meu. Toți cei care vin îl observă prima dată. O lucrare care spune ceva, care are suflet. Îl privesc în fiecare dimineață."</p>
-      <p class="tcard-name">Mihai și Ana T.</p>
-      <p class="tcard-city">Tulcea</p>
-    </article>
-    <article class="tcard rv d3">
-      <div class="stars">★★★★★</div>
-      <p class="tcard-text">"Calitatea e remarcabilă — culori vii, textură reală, prezență. Nu e un print. Se vede că e pictură originală, că cineva a pus suflet în fiecare centimetru."</p>
-      <p class="tcard-name">Cristian L.</p>
-      <p class="tcard-city">Galați</p>
-    </article>
   </div>
 </section>
 
@@ -998,19 +1082,25 @@ textarea { resize:vertical; min-height:110px; }
 <script>
 // ── GALLERY DATA ──
 const paintings = [
-  { src:"WhatsApp Image 2026-05-20 at 18.45..jpeg",  title:"Olandeză",               sub:"Acrilic pe pânză", cat:"flori",     av:true  },
-  { src:"ingrijire.jpeg",                            title:"Veșnicie printre Flăcări",sub:"Acrilic pe pânză", cat:"figurativ", av:true  },
-  { src:"WhatsApp Image 2026-05-20 at .jpeg",        title:"Spirala Interioară",      sub:"Acrilic pe pânză", cat:"figurativ", av:true  },
-  { src:"WhatsApp Image 2026-05-20 at 18.45.566.jpeg",title:"Ecoul unei Grădini",    sub:"Acrilic pe pânză", cat:"figurativ", av:true  },
-  { src:"gradina-de-acasa.jpeg",                     title:"Grădina de Acasă",        sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
-  { src:"WhatsApp Image 2026-05-20 at 18.45.52.jpeg",title:"Margarete",              sub:"Acrilic pe pânză", cat:"flori",     av:true  },
-  { src:"leaganul.jpeg",                             title:"Leagănul",               sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
-  { src:"malul-apei.jpeg",                           title:"Malul Apei",             sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
-  { src:"natura-moarta.jpeg",                        title:"Natură Statică",         sub:"Ulei pe pânză",    cat:"ulei",      av:true  },
-  { src:"studiu-de-forma.jpeg",                      title:"Studiu de Formă",        sub:"Ulei pe pânză",    cat:"ulei",      av:true  },
-  { src:"casa-cu-etaj.jpeg",                         title:"Casa Avramide",          sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
-  { src:"dimineata.jpeg",                            title:"Dimineața",              sub:"Ulei pe pânză",    cat:"ulei",      av:true  },
-  { src:"WhatsApp Image 2026-05-.jpeg",              title:"Cataclis",               sub:"Ulei pe pânză",    cat:"figurativ", av:true  },
+  { src:"imagini/olandeza-flori-acrilic.jpeg",  title:"Olandeză",               sub:"Acrilic pe pânză", cat:"flori",     av:true  },
+  { src:"imagini/ingrijire.jpeg",                            title:"Veșnicie printre Flăcări",sub:"Acrilic pe pânză", cat:"figurativ", av:true  },
+  { src:"imagini/spirala-interioara-acrilic.jpeg",        title:"Spirala Interioară",      sub:"Acrilic pe pânză", cat:"figurativ", av:true  },
+  { src:"imagini/ecoul-unei-gradini-acrilic.jpeg",title:"Ecoul unei Grădini",    sub:"Acrilic pe pânză", cat:"figurativ", av:true  },
+  { src:"imagini/gradina-de-acasa.jpeg",                     title:"Grădina de Acasă",        sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
+  { src:"imagini/margarete-flori-acrilic.jpeg",title:"Margarete",              sub:"Acrilic pe pânză", cat:"flori",     av:true  },
+  { src:"imagini/leaganul.jpeg",                             title:"Leagănul",               sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
+  { src:"imagini/malul-apei.jpeg",                           title:"Malul Apei",             sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
+  { src:"imagini/natura-moarta.jpeg",                        title:"Natură Statică",         sub:"Ulei pe pânză",    cat:"ulei",      av:true  },
+  { src:"imagini/studiu-de-forma.jpeg",                      title:"Studiu de Formă",        sub:"Ulei pe pânză",    cat:"ulei",      av:true  },
+  { src:"imagini/casa-cu-etaj.jpeg",                         title:"Casa Avramide",          sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
+  { src:"imagini/dimineata.jpeg",                            title:"Dimineața",              sub:"Ulei pe pânză",    cat:"ulei",      av:true  },
+  { src:"imagini/cataclis-figurativ-ulei.jpeg",              title:"Cataclis",               sub:"Ulei pe pânză",    cat:"figurativ", av:true  },
+  { src:"imagini/balta-cu-nuferi-peisaj-acrilic.jpeg",  title:"Balta cu Nuferi",      sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
+  { src:"imagini/vila-veche-peisaj-acrilic.jpeg", title:"Vilă Veche",        sub:"Acrilic pe pânză", cat:"peisaje",   av:true  },
+  { src:"imagini/calorifer-viu-tehnici-mixte.jpeg", title:"Calorifer Viu",     sub:"Tehnici mixte pe calorifer", cat:"figurativ", av:true  },
+  { src:"imagini/denisa-aer-liber.jpeg",                          title:"Denisa",             sub:"Fotografie",               cat:"cuea",      av:true  },
+  { src:"imagini/denisa-simionov-atelier.jpeg",     title:"Denisa — Atelier",  sub:"Fotografie",               cat:"cuea",      av:true  },
+  { src:"imagini/denisa-simionov-expozitie.jpeg",         title:"Denisa — Expoziție",sub:"Fotografie",               cat:"cuea",      av:true  },
 ];
 
 let lbItems  = [...paintings];
@@ -1068,6 +1158,8 @@ function closeLB() {
   document.body.style.overflow = '';
 }
 function stepLB(dir) {
+  lbImg.classList.remove('zoomed');
+  lbImg.style.transformOrigin = 'center';
   lbIdx = (lbIdx + dir + lbItems.length) % lbItems.length;
   openLB(lbIdx);
 }
@@ -1076,6 +1168,19 @@ document.getElementById('lb-x').addEventListener('click', closeLB);
 document.getElementById('lb-prev').addEventListener('click', e => { e.stopPropagation(); stepLB(-1); });
 document.getElementById('lb-next').addEventListener('click', e => { e.stopPropagation(); stepLB(1); });
 lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+
+// zoom click pe imagine
+lbImg.addEventListener('click', e => {
+  e.stopPropagation();
+  if (lbImg.classList.toggle('zoomed')) {
+    const rect = lbImg.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width * 100).toFixed(1);
+    const y = ((e.clientY - rect.top)  / rect.height * 100).toFixed(1);
+    lbImg.style.transformOrigin = `${x}% ${y}%`;
+  }
+});
+// reset zoom la navigare
+function openLBOrig(i) { lbImg.classList.remove('zoomed'); lbImg.style.transformOrigin='center'; }
 document.addEventListener('keydown', e => {
   if (!lb.classList.contains('on')) return;
   if (e.key === 'Escape')     closeLB();
@@ -1200,7 +1305,7 @@ document.getElementById('orderForm').addEventListener('submit', async e => {
 });
 
 // ── INIT ──
-buildGallery('toate');
+buildGallery('peisaje');
 </script>
 </body>
 </html>
