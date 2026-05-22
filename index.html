@@ -571,6 +571,15 @@ textarea { resize:vertical; min-height:110px; }
   text-transform:uppercase; color:var(--gold);
 }
 .tcard-city { font-size:.7rem; color:var(--white-dim); margin-top:2px; }
+.tcard-painting {
+  width:100%; aspect-ratio:4/3;
+  object-fit:cover; display:block;
+  margin-bottom:20px;
+  transition:transform .4s;
+}
+.tcard:hover .tcard-painting { transform:scale(1.02); }
+.tcard.has-img { overflow:hidden; padding:0; }
+.tcard.has-img .tcard-body { padding:24px 28px; }
 
 @media(max-width:860px) {
   .testi-grid { grid-template-columns:1fr; max-width:480px; }
@@ -922,11 +931,14 @@ textarea { resize:vertical; min-height:110px; }
   <h2 class="sec-title rv d1">Povești adevărate</h2>
   <div class="divider rv d2"></div>
   <div class="testi-grid">
-    <article class="tcard rv d1">
-      <div class="stars">★★★★★</div>
-      <p class="tcard-text">"Am comandat un tablou ca dar de nuntă. Denisa a înțeles exact ce voiam din prima discuție. Când l-am văzut terminat, m-am emoționat. E mult mai mult decât o pictură."</p>
-      <p class="tcard-name">Andreea M.</p>
-      <p class="tcard-city">Galați</p>
+    <article class="tcard has-img rv d1">
+      <img class="tcard-painting" src="WhatsApp Image 2026-05-22 at 17.31.35 (3).jpeg" alt="Tablou original — SIMI" loading="lazy">
+      <div class="tcard-body">
+        <div class="stars">★★★★★</div>
+        <p class="tcard-text">"Sunt foarte frumoase și apreciate! Le-am avut expuse cu drag. Abia aștept să comand din nou."</p>
+        <p class="tcard-name">Client fidel</p>
+        <p class="tcard-city">Galați</p>
+      </div>
     </article>
     <article class="tcard rv d2">
       <div class="stars">★★★★★</div>
