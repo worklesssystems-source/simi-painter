@@ -649,6 +649,63 @@ textarea { resize:vertical; min-height:110px; }
 }
 .hero-price-note strong { color: var(--gold); font-weight: 400; }
 
+/* ── HERO SPLIT ── */
+#hero { align-items: center; justify-content: center; }
+.hero-split {
+  position: relative; z-index: 2;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 72px;
+  align-items: center;
+  max-width: 1160px;
+  width: 100%;
+  padding: 0 52px;
+}
+.hero-split .hero-inner {
+  text-align: left;
+  padding: 0;
+  max-width: none;
+}
+.hero-split .hero-ctas { justify-content: flex-start; }
+.hero-split .hero-eyebrow,
+.hero-split .hero-title,
+.hero-split .hero-sub,
+.hero-split .hero-ctas,
+.hero-split .hero-price-note { opacity: 0; }
+.hero-split .hero-eyebrow  { animation: fuUp .8s var(--ease) .25s forwards; }
+.hero-split .hero-title    { animation: fuUp .9s var(--ease) .45s forwards; }
+.hero-split .hero-sub      { animation: fuUp .9s var(--ease) .65s forwards; }
+.hero-split .hero-ctas     { animation: fuUp .9s var(--ease) .85s forwards; }
+.hero-split .hero-price-note { animation: fuUp .9s var(--ease) 1.05s forwards; }
+.hero-photo-wrap {
+  position: relative;
+  opacity: 0;
+  animation: fuUp 1s var(--ease) .35s forwards;
+}
+.hero-photo-wrap::before { display: none; }
+.hero-photo {
+  position: relative; z-index: 1;
+  width: 100%;
+  max-height: 520px;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+  object-position: center 15%;
+  display: block;
+}
+.hero-photo-glow { display: none; }
+@media(max-width:860px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 24px;
+    text-align: center;
+  }
+  .hero-split .hero-inner { text-align: center; }
+  .hero-split .hero-ctas { justify-content: center; }
+  .hero-photo-wrap { max-width: 320px; margin: 0 auto; }
+  .hero-photo { aspect-ratio: 4/5; }
+}
+
 /* ── SOLD TOGGLE ── */
 .sold-wrap { text-align: center; margin-top: 14px; }
 .sold-toggle-btn {
@@ -713,15 +770,23 @@ textarea { resize:vertical; min-height:110px; }
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg" id="heroBg"></div>
-  <div class="hero-inner">
-    <p class="hero-eyebrow">Pictură originală &middot; România</p>
-    <h1 class="hero-title">Fiecare tablou spune<br><em>ce cuvintele nu pot.</em></h1>
-    <p class="hero-sub">Pictură originală realizată cu perfecționism obsesiv — pentru spații care merită mai mult decât obișnuitul.</p>
-    <div class="hero-ctas">
-      <a href="#galerie" class="btn-gold">Descoperă lucrările</a>
-      <a href="https://wa.me/40771567476" class="btn-ghost" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+  <div class="hero-split">
+    <div class="hero-inner">
+      <p class="hero-eyebrow">Pictură originală &middot; România</p>
+      <h1 class="hero-title" style="font-size:clamp(2.2rem,3.8vw,4rem);line-height:1.1;">Fiecare tablou spune<br><em>ce cuvintele nu pot.</em></h1>
+      <p class="hero-sub">Pictură originală realizată cu perfecționism obsesiv — pentru spații care merită mai mult decât obișnuitul.</p>
+      <div class="hero-ctas">
+        <a href="#galerie" class="btn-gold">Descoperă lucrările</a>
+        <a href="https://wa.me/40771567476" class="btn-ghost" target="_blank" rel="noopener">Scrie pe WhatsApp</a>
+      </div>
+      <p class="hero-price-note">Tablouri originale · de la <strong>800 RON</strong> · Livrare în România</p>
     </div>
-    <p class="hero-price-note">Tablouri originale · de la <strong>800 RON</strong> · Livrare în România</p>
+    <div class="hero-photo-wrap">
+      <img class="hero-photo"
+        src="WhatsApp Image 2026-05-20 at 18.45.53.jpeg"
+        alt="Denisa Simionov — SIMI, pictoriță">
+      <div class="hero-photo-glow"></div>
+    </div>
   </div>
 </section>
 
@@ -747,7 +812,7 @@ textarea { resize:vertical; min-height:110px; }
   <div class="about-grid">
     <div class="about-photo-wrap rv">
       <img class="about-photo" loading="lazy"
-        src="WhatsApp Image 2026-05-20 at 18.45.53.jpeg"
+        src="WhatsApp Image 2026-05-20 at 18.4.jpeg"
         alt="Denisa Simionov — SIMI, pictoriță">
       <div class="about-glow"></div>
     </div>
