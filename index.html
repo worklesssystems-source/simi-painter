@@ -694,16 +694,24 @@ textarea { resize:vertical; min-height:110px; }
 }
 .hero-photo-glow { display: none; }
 @media(max-width:860px) {
+  #hero {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+    padding: 110px 0 70px;
+    align-items: flex-start;
+  }
   .hero-split {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
     padding: 0 24px;
     text-align: center;
+    align-items: center;
   }
   .hero-split .hero-inner { text-align: center; }
   .hero-split .hero-ctas { justify-content: center; }
-  .hero-photo-wrap { max-width: 320px; margin: 0 auto; }
-  .hero-photo { aspect-ratio: 4/5; }
+  .hero-photo-wrap { max-width: 260px; margin: 0 auto; }
+  .hero-photo { aspect-ratio: 3/4; max-height: 340px; }
 }
 
 /* ── SOLD TOGGLE ── */
